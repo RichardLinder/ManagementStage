@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\FormationRepository;
 
 
 class SessionController extends AbstractController
@@ -37,8 +38,25 @@ class SessionController extends AbstractController
             'session' => $session
             ]
         );
+    }
     
-
+    #[Route('/formation', name: 'app_Formation')]
+    public function formation(FormationRepository $formationRepository): Response
+    {
+        $formations = $formationRepository->findAll();
+        return $this->render('formation\index.htlm.twig', [
+            'formations' => $formations
+        ]);
+    }
+    #[Route('/formation/{id}/show', name: 'show_formation')]
+    public function showformation(formationRepository $formationRepository,$id): Response 
+    {
+        $formation = $formationRepository->findOneBy(['id'=> $id]); 
+        return $this->render
+        (
+            'formation\showformation.htlm.twig' ,           [
+            'formation' => $formation
+            ]
+        );
     }
 }
-
