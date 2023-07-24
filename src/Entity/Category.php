@@ -18,7 +18,7 @@ class Category
     #[ORM\Column(length: 100)]
     private ?string $titleCategory = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Course::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'Category', targetEntity: Course::class, orphanRemoval: true)]
     private Collection $courses;
 
     public function __construct()
