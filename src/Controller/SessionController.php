@@ -38,9 +38,8 @@ class SessionController extends AbstractController
             'session' => $session
             ]
         );
-    }
-    
-    #[Route('/formation', name: 'app_Formation')]
+    }    
+    #[Route('/formation', name: 'app_formation')]
     public function formation(FormationRepository $formationRepository): Response
     {
         $formations = $formationRepository->findAll();
@@ -59,4 +58,5 @@ class SessionController extends AbstractController
             ]
         );
     }
+  
 }
